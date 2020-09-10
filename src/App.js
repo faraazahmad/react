@@ -1,28 +1,23 @@
 import React from 'react';
-import { Table, Menu } from 'antd';
+import Sidebar from './Sidebar';
 import './App.css';
-import SubMenu from 'antd/lib/menu/SubMenu';
+import { Layout } from 'antd';
+import ShowContent from './ShowContent';
+
+const { Sider, Content } = Layout;
+
+async function getUsers() {
+  const users = await fetch('https://jsonplaceholder.typicode.com/posts').data;
+  return users;
+}
 
 function App() {
   return (
     <div className="App">
-      <Menu
-        mode="inline">
-        <SubMenu key="sub1"
-        title={
-          <span>Navigation One</span>
-        }
-        >
-          <Menu.ItemGroup key="g1" title="Item 1">
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup key="g2" title="Item 2">
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-      </Menu>
+      <Layout>
+        <Sider><Sidebar/></Sider>
+        <Content><ShowContent users={getUsers()} /></Content>
+      </Layout>
     </div>
   );
 }
