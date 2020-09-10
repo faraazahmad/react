@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Table, Menu } from 'antd';
 import './App.css';
+import SubMenu from 'antd/lib/menu/SubMenu';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Menu
+        mode="inline">
+        <SubMenu key="sub1"
+        title={
+          <span>Navigation One</span>
+        }
         >
-          Learn React
-        </a>
-      </header>
+          <Menu.ItemGroup key="g1" title="Item 1">
+            <Menu.Item key="1">Option 1</Menu.Item>
+            <Menu.Item key="2">Option 2</Menu.Item>
+          </Menu.ItemGroup>
+          <Menu.ItemGroup key="g2" title="Item 2">
+            <Menu.Item key="3">Option 3</Menu.Item>
+            <Menu.Item key="4">Option 4</Menu.Item>
+          </Menu.ItemGroup>
+        </SubMenu>
+      </Menu>
     </div>
   );
 }
