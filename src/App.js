@@ -3,12 +3,12 @@ import Sidebar from './Sidebar';
 import './App.css';
 import { Layout } from 'antd';
 import ShowContent from './ShowContent';
+import Axios from 'axios';
 
 const { Sider, Content } = Layout;
 
-async function getUsers() {
-  const users = await fetch('https://jsonplaceholder.typicode.com/posts').data;
-  return users;
+function getUsers() {
+  Axios.get('https://jsonplaceholder.typicode.com/posts').then((response) => response.data);
 }
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <Layout>
         <Sider><Sidebar/></Sider>
-        <Content><ShowContent users={getUsers()} /></Content>
+        <Content><ShowContent getUsers={getUsers} /></Content>
       </Layout>
     </div>
   );
